@@ -6,7 +6,7 @@
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 04:06:34 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/07/20 19:56:09 by anrodri2         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:23:19 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int	check_if_in_base(char *base, char c)
+long	check_if_in_base(char *base, char c)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (base[i] != '\0')
@@ -28,13 +28,13 @@ int	check_if_in_base(char *base, char c)
 	return (0);
 }
 
-int	convert_to_dec(char *nbr, char *base_from, int sign)
+long	convert_to_dec(char *nbr, char *base_from, long sign)
 {
-	int	base_length;
-	int	nbr_length;
-	int	number;
-	int	i;
-	int	j;
+	long	base_length;
+	long	nbr_length;
+	long	number;
+	long	i;
+	long	j;
 
 	base_length = 0;
 	nbr_length = 0;
@@ -57,11 +57,11 @@ int	convert_to_dec(char *nbr, char *base_from, int sign)
 	return (number);
 }
 
-int	ft_function(char *return_number, char *base, char *str)
+long	ft_function(char *return_number, char *base, char *str)
 {
-	int	k;
-	int	i;
-	int	sign;
+	long	k;
+	long	i;
+	long	sign;
 
 	k = 0;
 	i = 0;
@@ -78,20 +78,21 @@ int	ft_function(char *return_number, char *base, char *str)
 			return_number[k] = str[i + k];
 			k++;
 		}
-		if (k == 0)
+		if (k != 0)
 		{
-			if (str[i] != '+' && str[i] != '-')
-				return (0);
+			return (convert_to_dec(return_number, base, sign));
 		}
+		if (str[i] != '+' && str[i] != '-')
+			return (0);
 		i++;
 	}
-	return (convert_to_dec(return_number, base, sign));
+	return (0);
 }
 
-int	int_length(int nbr)
+long	int_length(long nbr)
 {
-	int	nbr_length;
-	
+	long	nbr_length;
+
 	nbr_length = 0;
 	while (nbr != 0)
 	{
@@ -101,33 +102,37 @@ int	int_length(int nbr)
 	return (nbr_length);
 }
 
-void	ft_rev_int_tab(char *tab, int size)
+void	ft_rev_int_tab(char *tab, long size, char minus)
 {
-	int	i;
-	int	temp;
-	int	size_b;
+	long	i;
+	long	temp;
+	long	size_b;
 
+	if (minus == '-')
+		size++;
 	size_b = size - 1;
 	i = 0;
-	
 	while (i < size / 2)
 	{
-		temp = tab[i];
-		tab[i] = tab[size_b];
-		tab[size_b] = temp;
-		size_b--;
+		if (tab[i] != '-')
+		{
+			temp = tab[i];
+			tab[i] = tab[size_b];
+			tab[size_b] = temp;
+			size_b--;
+		}
 		i++;
 	}
 }
 
-char	*convert_to_base(int nbr, char *base_to, char *return_number)
+char	*convert_to_base(long nbr, char *base_to, char *return_number)
 {
-	int	base_length;
-	int	counter;
-	int	nbr_length;
-	int	nb_convert_length;
-	int	nb_copy;
-	int	nb_convert_length_c;
+	long	base_length;
+	long	counter;
+	long	nbr_length;
+	long	nb_convert_length;
+	long	nb_copy;
+	long	nb_convert_length_c;
 
 	base_length = 0;
 	counter = 0;
@@ -158,13 +163,13 @@ char	*convert_to_base(int nbr, char *base_to, char *return_number)
 		nb_convert_length--;
 		nb_copy = nb_copy / base_length;
 	}
-	ft_rev_int_tab(return_number, nb_convert_length_c);
+	ft_rev_int_tab(return_number, nb_convert_length_c, return_number[0]);
 	return (return_number);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int	number;
+	long	number;
 	char *number_return;
 	char *number_returning;
 
@@ -177,9 +182,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 int	main(void)
 {
-	char str[100] = "    -D";
-	char base[100] = "0123456789ABCDEF";
-	char base_to[100] = "01";
+	char str[100] = "-8948489489489489";
+	char base[100] = "0123456789";
+	char base_to[100] = "0123456789";
 	char	*test;
 
 	printf("%s",ft_convert_base(str, base, base_to));
