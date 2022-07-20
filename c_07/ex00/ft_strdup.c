@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 05:04:21 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/07/17 19:14:42 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/07/16 20:42:26 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/07/17 03:01:08 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Compares the difference between the 2 strings,
-// Returns the first difference found in ASCII
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+#include <stdlib.h>
 
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (0);
+char	*ft_strdup(char *src)
+{
+	int	src_size;
+	char	*return_src;
+
+	src_size = 0;
+	while (src[src_size] != '\0')
+		src_size++;
+	return_src = (char*)malloc(src_size + 1);
+	if (src == 0)
+		return (0);
+	src_size = 0;
+	while (src[src_size] != '\0')
+		{
+			return_src[src_size] = src[src_size];
+			src_size++;
+		}
+	return_src[src_size] = '\0';
+	return (return_src);
 }

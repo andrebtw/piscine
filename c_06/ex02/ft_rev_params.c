@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 05:04:21 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/07/17 19:14:42 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/07/16 00:41:52 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/07/16 00:49:24 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Compares the difference between the 2 strings,
-// Returns the first difference found in ASCII
-int	ft_strcmp(char *s1, char *s2)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
-	return (0);
+}
+
+int	main(int args, char **argv)
+{
+    args--;
+    while (args > 0)
+	{
+    	ft_putstr(argv[args]);
+		write(1, "\n", 1);
+		args--;
+	}
+    return (0);
 }

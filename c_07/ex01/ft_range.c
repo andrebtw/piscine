@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 05:04:21 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/07/17 19:14:42 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/07/16 21:45:55 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/07/16 22:32:43 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Compares the difference between the 2 strings,
-// Returns the first difference found in ASCII
-int	ft_strcmp(char *s1, char *s2)
+#include <stdlib.h>
+
+int	*ft_range(int min, int max)
 {
+	int	*array;
 	int	i;
 
+	if (min >= max)
+		return (NULL);
+	array = (int*)malloc(4 * (max - min));
 	i = 0;
-	while (s1[i] != '\0')
+	while (min < max)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		array[i] = min;
+		printf("%d \n", array[i]);
 		i++;
+		min++;
 	}
-	return (0);
+	return (array);
 }

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anrodri2 <anrodri2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 05:04:21 by anrodri2          #+#    #+#             */
-/*   Updated: 2022/07/17 19:14:42 by anrodri2         ###   ########.fr       */
+/*   Created: 2022/07/14 23:58:47 by anrodri2          #+#    #+#             */
+/*   Updated: 2022/07/19 16:26:09 by anrodri2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Compares the difference between the 2 strings,
-// Returns the first difference found in ASCII
-int	ft_strcmp(char *s1, char *s2)
+int	ft_sqrt(int nb)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] != '\0')
+	while ((i * i) != nb)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if ((i * i) > nb || i > 46341)
+			return(0);
 		i++;
 	}
-	return (0);
+	return (i);
 }
